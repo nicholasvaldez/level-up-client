@@ -13,11 +13,11 @@ export const EditGameForm = () => {
   const { gameId } = useParams()
 
   const [currentGame, setCurrentGame] = useState({
-    skillLevel: "",
+    skill_level: "",
     number_of_players: 0,
     name: "",
     maker: "",
-    gameTypeId: 0,
+    game_type: 0,
   })
   useEffect(() => {
     getSingleGame(`${gameId}`).then((data) => setCurrentGame(data))
@@ -113,7 +113,7 @@ export const EditGameForm = () => {
             value={currentGame.game_type}
             onChange={(evt) => {
               const copy = { ...currentGame }
-              copy.gameTypeId = evt.target.value
+              copy.game_type = evt.target.value
               setCurrentGame(copy)
             }}
           >
@@ -140,12 +140,11 @@ export const EditGameForm = () => {
             game_type: parseInt(currentGame.game_type),
           }
 
-          // Send POST request to your API
-          createGame(game).then(() => navigate("/"))
+          updateGame(gameId, game).then(() => navigate("/"))
         }}
         className="btn btn-primary"
       >
-        Create
+        submit
       </button>
     </form>
   )
