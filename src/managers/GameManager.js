@@ -43,5 +43,5 @@ export const updateGame = (id, game) => {
       accept: "application/json",
     },
     body: JSON.stringify(game),
-  }).then((response) => response.json())
+  })
 }
