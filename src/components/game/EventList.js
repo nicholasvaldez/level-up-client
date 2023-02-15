@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getEvents } from "../../managers/EventManager"
+import { deleteEvent, getEvents } from "../../managers/EventManager"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
@@ -34,6 +34,15 @@ export const EventList = (props) => {
             <Link to={`/events/edit/${event.id}`}>
               <button>Edit</button>
             </Link>
+            <button
+              onClick={() =>
+                deleteEvent(event.id).then(() =>
+                  getEvents().then((data) => setEvents(data))
+                )
+              }
+            >
+              Delete
+            </button>
           </section>
         )
       })}
