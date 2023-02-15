@@ -28,6 +28,8 @@ export const EventList = (props) => {
             <div className="event__date">{event.date}</div>
             <div className="event__start">{event.start_time}</div>
             <div className="event__end">{event.end_time}</div>
+            <div className="event__des">{event.description}</div>
+            <div className="event__game">{event.game.name}</div>
           </section>
         )
       })}
