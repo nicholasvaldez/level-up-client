@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-import { getGames } from "../../managers/GameManager.js"
+import { getGames, deleteGame } from "../../managers/GameManager.js"
 
 export const GameList = (props) => {
   const [games, setGames] = useState([])
@@ -35,6 +35,15 @@ export const GameList = (props) => {
             <Link to={`/games/edit/${game.id}`}>
               <button>Edit</button>
             </Link>
+            <button
+              onClick={() =>
+                deleteGame(game.id).then(() =>
+                  getGames().then((data) => setGames(data))
+                )
+              }
+            >
+              Delete
+            </button>
           </section>
         )
       })}

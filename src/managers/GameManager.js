@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 export const getGames = () => {
   return fetch("http://localhost:8000/games", {
     headers: {
@@ -43,5 +45,14 @@ export const updateGame = (id, game) => {
       accept: "application/json",
     },
     body: JSON.stringify(game),
+  })
+}
+
+export const deleteGame = (id) => {
+  return fetch(`http://localhost:8000/games/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Token ${localStorage.getItem("lu_token")}`,
+    },
   })
 }
