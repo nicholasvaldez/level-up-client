@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { deleteEvent, getEvents } from "../../managers/EventManager"
+import {
+  deleteEvent,
+  getEvents,
+  leaveEvent,
+  joinEvent,
+} from "../../managers/EventManager"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
@@ -43,6 +48,27 @@ export const EventList = (props) => {
             >
               Delete
             </button>
+            {event.joined ? (
+              <button
+                onClick={() =>
+                  leaveEvent(event.id).then(() =>
+                    getEvents().then((data) => setEvents(data))
+                  )
+                }
+              >
+                Leave
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  joinEvent(event.id).then(() =>
+                    getEvents().then((data) => setEvents(data))
+                  )
+                }
+              >
+                Join
+              </button>
+            )}
           </section>
         )
       })}
